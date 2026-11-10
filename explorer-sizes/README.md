@@ -13,8 +13,8 @@ itself corrupt. The Marketplace page, `extension/README.md`, says all of this to
 ## Install from the repo
 
 ```
-git clone https://github.com/kahlery/explorer-sizes ~/.vscode/explorer-sizes
-code --install-extension ~/.vscode/explorer-sizes/explorer-sizes.vsix
+git clone https://github.com/kahlery/vs-code-extensions ~/.vscode/vs-code-extensions
+code --install-extension ~/.vscode/vs-code-extensions/explorer-sizes/explorer-sizes.vsix
 ```
 
 Open VS Code (or reload it), quit it when it asks, and open it again.

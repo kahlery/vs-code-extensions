@@ -36,10 +36,11 @@
   "icon": "icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kahlery/explorer-sizes"
+    "url": "https://github.com/kahlery/vs-code-extensions",
+    "directory": "explorer-sizes"
   },
   "bugs": {
-    "url": "https://github.com/kahlery/explorer-sizes/issues"
+    "url": "https://github.com/kahlery/vs-code-extensions/issues"
   },
-  "homepage": "https://github.com/kahlery/explorer-sizes#readme"
+  "homepage": "https://github.com/kahlery/vs-code-extensions/tree/main/explorer-sizes#readme"
 }
