@@ -194,9 +194,9 @@ input[type=text]:focus { outline: 1px solid var(--vscode-focusBorder); }
 input.bad { border-color: var(--vscode-inputValidation-errorBorder); }
 .row { display: flex; gap: 6px; margin-top: 4px; }
 .row button { padding: 4px 12px; border: none; border-radius: 2px; cursor: pointer; font: inherit; }
-.run { background: var(--vscode-button-background); color: var(--vscode-button-foreground); }
-.run:hover { background: var(--vscode-button-hoverBackground); }
-.alt { background: var(--vscode-button-secondaryBackground); color: var(--vscode-button-secondaryForeground); }
+.row .run { background: var(--vscode-button-background); color: var(--vscode-button-foreground); }
+.row .run:hover { background: var(--vscode-button-hoverBackground); }
+.row .alt { background: var(--vscode-button-secondaryBackground); color: var(--vscode-button-secondaryForeground); }
 .warn { color: var(--vscode-editorWarning-foreground); margin-bottom: 8px; }
 .empty { opacity: .7; }
 </style></head><body><div id="app"><p class="empty">Looking for scripts…</p></div><script>
@@ -278,7 +278,7 @@ function draw() {
       app.append(grid)
     }
     const b = el('button', { title: s.about || s.rel, className: state.open === s.rel ? 'on' : '' },
-      s.name, el('span', { className: 'n', textContent: s.fields.length ? s.fields.length + ' field' + (s.fields.length > 1 ? 's' : '') : 'run' }))
+      s.name, el('span', { className: 'n', textContent: s.fields.length ? s.fields.length + ' field' + (s.fields.length > 1 ? 's' : '') : s.remote ? 'on the server' : 'run' }))
     b.onclick = () => {
       if (!s.fields.length && !s.remote && !b.classList.contains('on')) {
         vscode.postMessage({ type: 'run', rel: s.rel, args: [] })
@@ -323,4 +323,4 @@ function activate(context) {
 
 function deactivate() {}
 
-module.exports = { activate, deactivate, parseUsage, readScript }
+module.exports = { activate, deactivate, parseUsage, readScript, page }

@@ -2,12 +2,16 @@
 
 Four items in the VS Code status bar, each in its own colour:
 
+![The four items in the status bar, a tooltip over the 5-hour limit](images/statusbar-dark.png)
+
 - **context** (blue): how full the session's context window is
 - **5h** (green) and **7d** (purple): the usage limits used, and the time until each resets
 - **cost** (yellow): what the session has cost so far
 
 An item turns to the warning background when it gets high (a limit at 80%, the context at 85%). The reset times count
 down by themselves.
+
+![The 5-hour limit at 86%, on the warning background](images/statusbar-hot.png)
 
 ## Where the numbers come from
 

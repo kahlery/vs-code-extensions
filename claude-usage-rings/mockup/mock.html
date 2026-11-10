@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Usage Rings mock-up</title>
+<!--
+  The bottom of a VS Code window with Usage Rings' four status bar items, for the Marketplace screenshots.
+  Query parameters:
+    theme=dark|light   Default Dark Modern / Default Light Modern (default dark)
+    hot=1              the 5-hour limit past 80%, on the warning background
+    tip=KEY            the tooltip of one item (ctx, five_hour, seven_day, usd) over it
+  Render with render.sh.
+-->
+<style>
+  body.dark { --bg: #181818; --editor: #1f1f1f; --border: #2b2b2b; --fg: #cccccc; --ln: #6e7681; --kw: #569cd6; --str: #ce9178;
+    --fn: #dcdcaa; --cm: #6a9955; --warn-bg: #7a6400; --warn-fg: #ffffff; --tip-bg: #202020; --tip-border: #454545;
+    --c-ctx: #4FC1FF; --c-five: #89D185; --c-seven: #C586C0; --c-usd: #E5C07B; }
+  body.light { --bg: #f8f8f8; --editor: #ffffff; --border: #e5e5e5; --fg: #3b3b3b; --ln: #6e7681; --kw: #0000ff; --str: #a31515;
+    --fn: #795e26; --cm: #008000; --warn-bg: #725102; --warn-fg: #ffffff; --tip-bg: #f8f8f8; --tip-border: #c8c8c8;
+    --c-ctx: #1a85c8; --c-five: #388a34; --c-seven: #a33ea1; --c-usd: #b8860b; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body { background: var(--editor); color: var(--fg); font: 13px/22px -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; -webkit-font-smoothing: antialiased; }
+  #code { position: absolute; left: 0; right: 0; top: 0; bottom: 22px; font: 12px/18px Menlo, Monaco, monospace; padding-top: 10px; white-space: pre; }
+  #code div { display: flex; }
+  #code .n { width: 52px; text-align: right; padding-right: 22px; color: var(--ln); }
+  .k { color: var(--kw); } .s { color: var(--str); } .f { color: var(--fn); } .c { color: var(--cm); }
+  #status { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; border-top: 1px solid var(--border); background: var(--bg);
+    font-size: 12px; display: flex; align-items: stretch; padding: 0 4px; white-space: nowrap; }
+  #status .it { display: flex; align-items: center; gap: 4px; padding: 0 6px; }
+  #status .it svg { display: block; }
+  #status .r { margin-left: auto; display: flex; }
+  #status .hot { background: var(--warn-bg); color: var(--warn-fg) !important; }
+  #tip { position: absolute; bottom: 30px; background: var(--tip-bg); border: 1px solid var(--tip-border); border-radius: 4px;
+    padding: 3px 9px; font-size: 13px; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
+</style>
+</head>
+<body>
+<div id="code"></div>
+<div id="status">
+  <span class="it"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M3 14 C5 9 10 9 12 3"/><path d="M8 4h5"/></svg>main</span>
+  <span class="it">⊗ 0 ⚠ 0</span>
+  <span class="r" id="right"></span>
+</div>
+<div id="tip" hidden></div>
+<script>
+const q = new URLSearchParams(location.search)
+document.body.className = q.get('theme') === 'light' ? 'light' : 'dark'
+const hot = q.get('hot') === '1'
+
+const code = [
+  ['<span class="k">import</span> { <span class="f">query</span> } <span class="k">from</span> <span class="s">\'./db\'</span>'],
+  [''],
+  ['<span class="c">// Orders placed since the given day, newest first.</span>'],
+  ['<span class="k">export async function</span> <span class="f">recentOrders</span>(since) {'],
+  ['  <span class="k">const</span> rows = <span class="k">await</span> <span class="f">query</span>(<span class="s">\'select * from orders where placed_at >= $1\'</span>, [since])'],
+  ['  <span class="k">return</span> rows.<span class="f">sort</span>((a, b) => b.placed_at - a.placed_at)'],
+  ['}'],
+]
+document.getElementById('code').innerHTML = code.map((l, i) => `<div><span class="n">${i + 12}</span><span>${l[0]}</span></div>`).join('')
+
+const ICON = {
+  ctx: '<ellipse cx="8" cy="3.8" rx="5.5" ry="2.2"/><path d="M2.5 3.8v8.4c0 1.2 2.5 2.2 5.5 2.2s5.5-1 5.5-2.2V3.8M2.5 8c0 1.2 2.5 2.2 5.5 2.2s5.5-1 5.5-2.2"/>',
+  five_hour: '<circle cx="8" cy="8" r="6.2"/><path d="M8 4.2V8l2.6 1.6"/>',
+  seven_day: '<rect x="2" y="3" width="12" height="11" rx="1"/><path d="M2 6.5h12M5 1.5v3M11 1.5v3"/>',
+  usd: '<rect x="1.5" y="3.5" width="13" height="9" rx="1"/><path d="M1.5 6.5h13M4 10h3"/>',
+}
+// What the extension writes into each item: the same text as extension.js makes from the usage file.
+const ITEMS = [
+  ['ctx', 'var(--c-ctx)', 'ctx 42%', false, 'Context window used'],
+  ['five_hour', 'var(--c-five)', hot ? '5h 86%  ↻ 1h 12m' : '5h 23%  ↻ 3h 41m', hot, '5-hour usage limit used (↻ resets in)'],
+  ['seven_day', 'var(--c-seven)', '7d 31%  ↻ 4d 6h', false, '7-day usage limit used (↻ resets in)'],
+  ['usd', 'var(--c-usd)', '$4.87', false, 'This session\'s cost so far'],
+]
+const right = document.getElementById('right')
+right.innerHTML = ITEMS.map(([k, c, text, isHot]) =>
+  `<span class="it${isHot ? ' hot' : ''}" data-k="${k}" style="color:${c}"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2">${ICON[k]}</svg>${text}</span>`).join('')
+  + ['Ln 15, Col 42', 'Spaces: 2', 'UTF-8', 'LF', 'JavaScript'].map(t => `<span class="it">${t}</span>`).join('')
+
+const tip = q.get('tip')
+if (tip) {
+  const it = right.querySelector(`[data-k="${tip}"]`)
+  const box = document.getElementById('tip')
+  box.textContent = ITEMS.find(i => i[0] === tip)[4]
+  box.hidden = false
+  const r = it.getBoundingClientRect()
+  box.style.left = Math.max(8, r.left + r.width / 2 - box.offsetWidth / 2) + 'px'
+}
+</script>
+</body>
+</html>

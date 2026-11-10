@@ -33,12 +33,14 @@ packs everything under `extension/` (images included) into `explorer-sizes.vsix`
 
 ```
 cd extension
-npx @vscode/vsce publish
+npx @vscode/vsce publish \
+  --baseImagesUrl https://github.com/kahlery/vs-code-extensions/raw/HEAD/explorer-sizes \
+  --baseContentUrl https://github.com/kahlery/vs-code-extensions/blob/HEAD/explorer-sizes/extension
 ```
 
 `vsce` packs `extension/` itself, as publisher `kahlery`. The Marketplace page's screenshots are linked relatively
-(`images/…`, a copy of the top-level `images/` kept in `extension/images/`); `vsce` turns them into links into this
-(public) repository, where the top-level `images/` answers them.
+(`images/…`, a copy of the top-level `images/` kept in `extension/images/`); with the base URLs above `vsce` turns them
+into links into this repository (which has to be public for them to show), where `explorer-sizes/images/` answers them.
 
 ## Undo
 

@@ -3,6 +3,8 @@
 Every `.sh` script in your workspace as a button in the sidebar. Click one to run it in its own terminal from the
 workspace root.
 
+![The Scripts view: the deploy script's fields open, its run in the terminal](images/scripts-dark.png)
+
 If a script needs arguments, clicking it opens fields for them instead, read from the usage line in its header comment:
 
 ```sh
@@ -25,6 +27,8 @@ Every script also gets an **extra** field for anything else. Right-click a butto
 would run straight away. What you typed is remembered.
 
 Scripts whose header says "run as root" or "run as postgres" never run on a single click: they open with a warning.
+
+![In Default Light Modern](images/scripts-light.png)
 
 ## Hiding folders
 

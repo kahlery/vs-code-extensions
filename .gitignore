@@ -2,3 +2,5 @@
 !explorer-sizes/explorer-sizes.vsix
 node_modules/
 .DS_Store
+.chrome-profile/
+mock-*.html

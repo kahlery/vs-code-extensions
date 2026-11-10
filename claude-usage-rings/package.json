@@ -2,7 +2,7 @@
 	"name": "claude-usage-rings",
 	"displayName": "Usage Rings for Claude Code",
 	"description": "Claude Code's context fill, 5-hour and 7-day limits and session cost in the status bar, each in its own colour.",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"publisher": "kahlery",
 	"license": "MIT",
 	"repository": {
