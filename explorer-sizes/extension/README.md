@@ -51,6 +51,7 @@ Nothing is sent anywhere: sizes come from reading your workspace's files on your
   still show their size, but it does not follow changes inside them by itself: run **Explorer Sizes: Refresh**.
 - With several folders open, the heading shows their sum.
 
-## License
+## Source
 
-MIT
+Open source under the MIT licence: [github.com/kahlery/vs-code-extensions/explorer-sizes](https://github.com/kahlery/vs-code-extensions/tree/main/explorer-sizes).
+Issues and pull requests are welcome [there](https://github.com/kahlery/vs-code-extensions/issues).

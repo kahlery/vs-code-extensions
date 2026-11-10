@@ -32,4 +32,9 @@ status line command. The file looks like this:
 
 Any field may be missing or `null`; its item is then hidden.
 
+## Source
+
+Open source under the MIT licence: [github.com/kahlery/vs-code-extensions/claude-usage-rings](https://github.com/kahlery/vs-code-extensions/tree/main/claude-usage-rings).
+Issues and pull requests are welcome [there](https://github.com/kahlery/vs-code-extensions/issues).
+
 Not affiliated with or endorsed by Anthropic.

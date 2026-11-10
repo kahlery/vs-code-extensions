@@ -39,3 +39,8 @@ always left out.
 ```json
 "shButtons.exclude": ["**/.claude/**", "deploy/**"]
 ```
+
+## Source
+
+Open source under the MIT licence: [github.com/kahlery/vs-code-extensions/shell-script-buttons](https://github.com/kahlery/vs-code-extensions/tree/main/shell-script-buttons).
+Issues and pull requests are welcome [there](https://github.com/kahlery/vs-code-extensions/issues).

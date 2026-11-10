@@ -13,6 +13,7 @@
 	"bugs": {
 		"url": "https://github.com/kahlery/vs-code-extensions/issues"
 	},
+	"homepage": "https://github.com/kahlery/vs-code-extensions/tree/main/claude-usage-rings#readme",
 	"icon": "icon.png",
 	"galleryBanner": {
 		"color": "#1A1B24",

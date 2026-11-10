@@ -13,6 +13,7 @@
 	"bugs": {
 		"url": "https://github.com/kahlery/vs-code-extensions/issues"
 	},
+	"homepage": "https://github.com/kahlery/vs-code-extensions/tree/main/shell-script-buttons#readme",
 	"icon": "icon.png",
 	"galleryBanner": {
 		"color": "#0B3B8C",
