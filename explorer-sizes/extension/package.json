@@ -1,0 +1,45 @@
+{
+  "name": "explorer-sizes",
+  "displayName": "Explorer Sizes",
+  "description": "Every file's and folder's size beside its name in VS Code's Explorer, and the open folder's total in its heading (it patches VS Code to do so)",
+  "version": "0.10.0",
+  "publisher": "kahlery",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "explorerSizes.refresh",
+        "title": "Explorer Sizes: Refresh"
+      },
+      {
+        "command": "explorerSizes.undoPatch",
+        "title": "Explorer Sizes: Undo VS Code Patch"
+      }
+    ]
+  },
+  "license": "MIT",
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "explorer",
+    "file size",
+    "folder size",
+    "size"
+  ],
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kahlery/explorer-sizes"
+  },
+  "bugs": {
+    "url": "https://github.com/kahlery/explorer-sizes/issues"
+  },
+  "homepage": "https://github.com/kahlery/explorer-sizes#readme"
+}
