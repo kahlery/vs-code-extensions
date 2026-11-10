@@ -1,0 +1,4 @@
+media/*.svg
+!media/icon.svg
+*.vsix
+.git/**

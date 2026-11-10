@@ -1,0 +1,105 @@
+{
+	"name": "shell-script-buttons",
+	"displayName": "Shell Script Buttons",
+	"description": "Your workspace's .sh scripts as a grid of buttons in the sidebar. Flags from each script's usage line become input fields.",
+	"version": "0.1.0",
+	"publisher": "kahlery",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kahlery/vs-code-extensions",
+		"directory": "shell-script-buttons"
+	},
+	"bugs": {
+		"url": "https://github.com/kahlery/vs-code-extensions/issues"
+	},
+	"icon": "icon.png",
+	"galleryBanner": {
+		"color": "#0B3B8C",
+		"theme": "dark"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"shell",
+		"scripts",
+		"bash",
+		"buttons",
+		"runner",
+		"tasks"
+	],
+	"engines": {
+		"vscode": "^1.80.0"
+	},
+	"activationEvents": [
+		"onView:shButtons.grid"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "shButtons",
+					"title": "Scripts",
+					"icon": "media/icon.svg"
+				}
+			]
+		},
+		"views": {
+			"shButtons": [
+				{
+					"type": "webview",
+					"id": "shButtons.grid",
+					"name": "Scripts"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "shButtons.refresh",
+				"title": "Refresh",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "shButtons.settings",
+				"title": "Ignored folders",
+				"icon": "$(gear)"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "shButtons.refresh",
+					"when": "view == shButtons.grid",
+					"group": "navigation"
+				},
+				{
+					"command": "shButtons.settings",
+					"when": "view == shButtons.grid",
+					"group": "navigation"
+				}
+			]
+		},
+		"configuration": {
+			"title": "Script Buttons",
+			"properties": {
+				"shButtons.exclude": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"default": [
+						"**/.claude/**",
+						"**/build/**",
+						"**/dist/**",
+						"**/vendor/**",
+						"**/.import/**"
+					],
+					"markdownDescription": "Glob patterns of scripts **not** to show as buttons, e.g. `**/.claude/**` or `deploy/**`. `node_modules`, `.git` and `.godot` are always left out.",
+					"scope": "resource"
+				}
+			}
+		}
+	}
+}
